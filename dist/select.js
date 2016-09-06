@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.19.4 - 2016-09-06T11:44:29.863Z
+ * Version: 0.19.4 - 2016-09-06T12:23:26.322Z
  * License: MIT
  */
 
@@ -1262,33 +1262,33 @@ uis.directive('uiSelect',
           if (transcludedNoChoice.length == 1) {
             element.querySelectorAll('.ui-select-no-choice').replaceWith(transcludedNoChoice);
           }
-        });
 
-        var transcludedHeader = transcluded.querySelectorAll('.ui-select-header');
-        var transcludedFooter = transcluded.querySelectorAll('.ui-select-footer');
-        if((transcludedHeader && transcludedHeader.length) || (transcludedFooter && transcludedFooter.length)) {
-          $timeout(function(){
-            var selectChoices = element.querySelectorAll('.ui-select-choices');
-            
-            if(transcludedHeader && transcludedHeader.length){
-              transcludedHeader.removeAttr('ui-select-header'); // To avoid loop in case directive as attr
-              transcludedHeader.removeAttr('ng-transclude'); // Content has already been transcluded
-              transcludedHeader.removeAttr('data-ui-select-header'); // Properly handle HTML5 data-attributes
-              transcludedHeader.removeAttr('data-ng-transclude');
-              selectChoices.prepend(transcludedHeader);
-            }
-            
-            if(transcludedFooter && transcludedFooter.length){
-              transcludedFooter.removeAttr('ui-select-footer'); // To avoid loop in case directive as attr
-              transcludedFooter.removeAttr('ng-transclude'); // Content has already been transcluded
-              transcludedFooter.removeAttr('data-ui-select-footer'); // Properly handle HTML5 data-attributes
-              transcludedFooter.removeAttr('data-ng-transclude');
-              selectChoices.append(transcludedFooter);
-            }
-              // re-compile selectChoices in case header or footer requires one of ui-select-choice's directives
-               $compile(selectChoices)(scope);
-            });
-        }
+          var transcludedHeader = transcluded.querySelectorAll('.ui-select-header');
+          var transcludedFooter = transcluded.querySelectorAll('.ui-select-footer');
+          if((transcludedHeader && transcludedHeader.length) || (transcludedFooter && transcludedFooter.length)) {
+            $timeout(function(){
+              var selectChoices = element.querySelectorAll('.ui-select-choices');
+              
+              if(transcludedHeader && transcludedHeader.length){
+                transcludedHeader.removeAttr('ui-select-header'); // To avoid loop in case directive as attr
+                transcludedHeader.removeAttr('ng-transclude'); // Content has already been transcluded
+                transcludedHeader.removeAttr('data-ui-select-header'); // Properly handle HTML5 data-attributes
+                transcludedHeader.removeAttr('data-ng-transclude');
+                selectChoices.prepend(transcludedHeader);
+              }
+              
+              if(transcludedFooter && transcludedFooter.length){
+                transcludedFooter.removeAttr('ui-select-footer'); // To avoid loop in case directive as attr
+                transcludedFooter.removeAttr('ng-transclude'); // Content has already been transcluded
+                transcludedFooter.removeAttr('data-ui-select-footer'); // Properly handle HTML5 data-attributes
+                transcludedFooter.removeAttr('data-ng-transclude');
+                selectChoices.append(transcludedFooter);
+              }
+                // re-compile selectChoices in case header or footer requires one of ui-select-choice's directives
+                 $compile(selectChoices)(scope);
+              });
+          }
+        });
 
         // Support for appending the select field to the body when its open
         var appendToBody = scope.$eval(attrs.appendToBody);
